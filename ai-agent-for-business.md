@@ -1,8 +1,8 @@
-Original: https://matintellect.com/en/posts/ii-agent-biznes-assistent-jes
+Original: https://matintellect.com/en/posts/ai-agent-for-business
 
-# AI agents for business - how I work with Jes
+# AI Agent for Business: What It Can Take Off Your Plate
 
-![AI agents for business - how I work with Jes](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ii-agent-biznes-assistent-jes-1791298177.jpg)
+![AI Agent for Business: What It Can Take Off Your Plate](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ii-agent-biznes-assistent-jes-1791298177.jpg)
 
 I have an AI agent working in my business. I call her Jes. She is my business assistant, helping with tasks related to my work, website and creative projects
 
