@@ -4,10 +4,6 @@ This repository-style note describes the content workflow documented in the Cont
 
 ![AI content factory illustration featuring Mat](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-how-to-build-an-ai-content-factory-1794285443.jpg)
 
-![People working at a computer. Photo: Pavel Danilyuk, Pexels](https://images.pexels.com/photos/7675029/pexels-photo-7675029.jpeg?auto=compress&cs=tinysrgb&w=1400)
-
-![Video editing workspace. Photo: Ron Lach, Pexels](https://images.pexels.com/photos/8102675/pexels-photo-8102675.jpeg?auto=compress&cs=tinysrgb&w=1400)
-
 ## Components and boundaries
 
 - **Source intake:** the owner’s Telegram account reads channels listed in `sources.json`. Candidate news is filtered for advertising and repeats, then shown as cards in an Ideas topic. A person can submit an idea manually.
@@ -44,11 +40,13 @@ Telegram sources ──> candidate cards ──> human selects idea + channel + 
 
 The engine’s one model-call path is in `llm.py`. It sends a text file whose first line contains `request_id`, `stage` and `schema_version`. The writer is instructed to end with `[END:<request_id>]`.
 
-The reply listener buffers messages from the configured writer account and joins likely fragments. A matching end marker resolves the waiting task immediately. If the request ID arrives but no terminator follows, a silence timer resolves after 15 seconds without a follow-up. That fallback prevents an omitted marker from leaving a request waiting indefinitely; silence does not prove the answer is complete.
+The reply listener buffers messages from the configured writer account and joins likely fragments. A matching end marker resolves the waiting task immediately. If a message with the request ID arrives but no terminator follows, a 15-second timer starts. Another message containing that ID resets the timer; a fragment without the ID does not. That fallback prevents an omitted marker from leaving a request waiting indefinitely; silence does not prove the answer is complete.
 
 Calls are single-flight. An `asyncio.Lock` covers sending the file and waiting for the response, so another model call through this function cannot overlap that interval. This simplifies message correlation at the cost of making queued calls wait behind a slow response. The function’s normal timeout is 600 seconds, followed by a 60-second grace period for a late reply. Errors are returned as an empty `LLMReply` with an error label; the code does not switch to a different model path.
 
 A request ID and end marker establish protocol structure, not trust. They cannot replace fact checking, editorial review, access controls or verification of an external publication.
+
+![People working at a computer. Photo: Pavel Danilyuk, Pexels](https://images.pexels.com/photos/7675029/pexels-photo-7675029.jpeg?auto=compress&cs=tinysrgb&w=1400)
 
 ## Approval and channel-specific output
 
@@ -66,6 +64,8 @@ The separation matters operationally: generating a shorter caption is a new draf
 4. Cancel a preview and confirm it does not proceed to publication.
 5. Approve a test post only in a safe environment, then inspect the exact external result and platform-specific drafts.
 6. Test group membership and button permissions. The README warns that any participant in the private forum can press its buttons.
+
+![Video editing workspace. Photo: Ron Lach, Pexels](https://images.pexels.com/photos/8102675/pexels-photo-8102675.jpeg?auto=compress&cs=tinysrgb&w=1400)
 
 These checks are recommendations, not reported results. No execution tests are claimed in this document.
 
