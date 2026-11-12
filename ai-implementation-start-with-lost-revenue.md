@@ -1,29 +1,94 @@
-# AI implementation: start with lost revenue
+# AI implementation: a loss-first audit template for small businesses
 
-![Finding a leak before adding automation](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-implementation-start-with-lost-revenue-1793066785.jpg)
+Type: audit template and decision guide. Reader: an owner, operations lead or consultant preparing an AI implementation. Goal: find where the business loses money, time and customers, price the biggest loss and choose the first automation from it. Limits: this is a planning template in prose and tables; it ships no code or configuration, and the worked numbers are teaching material, not data from a client
 
-A clinic I worked with was paying for advertising while letting potential customers slip away. The ads brought inquiries, but nobody handled them promptly. There was no automated analysis of incoming leads, and the clinic was losing money at that point in the process
+![AI-generated illustration of AI implementation starting with lost revenue](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-implementation-start-with-lost-revenue-1793066785.jpg)
 
-My first task was to audit those leads. An inquiry represents someone who might become a customer; here, handling that inquiry had a direct connection to revenue. That made it the place to begin
+## Reference case
 
-## The workflow we built
+Verified facts, as published on my project pages:
 
-After the audit, we put together an automated reception process. A bot answered people immediately through every channel, guided them to an appointment and reserved time in the clinic's calendar. The workflow started bringing in money straight away
+- a clinic was losing customers after its ads because incoming requests were not processed quickly; the audit started with those requests
+- a reception bot was then built that answers instantly in every channel, takes clients to a booking and reserves time in the clinic's calendar
+- the clinic now runs a team of 6 agents on the owner's own server; the client chatbot covers about 114 price items and 48 services and answers only from the clinic's documents, sending anything else to the owner as a card
+- my own requests run the same way: about 40 calls with 15 clients have gone through the system, each with a visible step
+- a bot that answers from documents and takes people to a booking takes about 2–3 weeks to build, including testing on real client questions
 
-![Colleagues examining documents](https://images.pexels.com/photos/7653571/pexels-photo-7653571.jpeg?auto=compress&cs=tinysrgb&w=1200)
+## Principle
 
-I helped the clinic increase its revenue several times over. In this case, the starting point was the right one: inquiries were already arriving, and slow handling was where customers and money were being lost
+AI mostly helps a business scale. Scale what works, after closing the places where results leak. Start every implementation by asking where the business loses the most money, time and customers
 
-That experience illustrates how I approach the choice of what to automate. Before proposing AI, I look for the business process where the company loses the most money, time or customers. A business is supposed to produce an actual result for its owner, and that is the perspective from which its processes need to be examined
+## Step 1. Map the customer path
 
-## What I expect AI to do
+| Step | Typical source of the count |
+|---|---|
+| Request | Messages in all channels, call log |
+| First reply | Conversation timestamps |
+| Booking or order | Calendar, order system |
+| Visit or delivery | Attendance marks, delivery records |
+| Payment | Payment records |
 
-The idea that AI can fix absolutely any business problem is a lie. For me, its most important current contribution is helping a business scale. But you have to understand the business thoroughly before scaling it, including the weak spots where value disappears
+## Step 2. Count one ordinary week
 
-My approach to that examination is described on my [business AI audit page](https://matintellect.com/en/services/ai-audit). The clinic's reception workflow came after an audit of incoming inquiries. Analysis determined the starting point; automation followed
+Record the number of people at each step, from real records, not memory. Then note the time from first message to first reply for ten recent conversations, including nights and weekends
 
-![An office team at work](https://images.pexels.com/photos/7654133/pexels-photo-7654133.jpeg?auto=compress&cs=tinysrgb&w=1200)
+## Step 3. List ownerless places
 
-The order I recommend is to work carefully and gradually, moving from simpler processes toward more complex ones. In the clinic, this meant starting with leads because of their direct effect on money, then building the reception workflow around answering and booking
+Write down every place where requests can sit without anyone responsible: personal inboxes, an employee's private messages, comments under posts, a second messenger
 
-And there is no need to fire people. Someone still has to press the buttons. My argument for AI is about making the business scalable, while people continue to work with the system. Start by examining money, time and customers, then automate the process you have actually understood
+![A team reviewing work documents](https://images.pexels.com/photos/7653571/pexels-photo-7653571.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Step 4. Price the biggest drop
+
+| Input | Meaning |
+|---|---|
+| People lost at the step | Count before minus count after |
+| Share who pay after passing the step | Payments divided by people who passed |
+| Average order | From payment records |
+| Monthly loss | People lost × share × average order × 4 |
+
+Worked example (teaching numbers): 50 requests, 28 replied, 15 paid, average order 120. Loss at the reply step is 22 people; the share who pay after a reply is 15 of 28; the monthly loss is about 5657
+
+## Step 5. Choose the cheapest fix for the symptom
+
+| Symptom | First automation |
+|---|---|
+| Replies take hours | Instant first reply and contact capture |
+| Requests lost between channels | One inbox for all channels |
+| Bookings do not show up | Reminders and confirmations |
+| Replies do not lead to bookings | Assistant that answers from documents and books time |
+| People visit but do not return | Not an automation problem first; review service and price |
+| Few requests at all | Not an automation problem; look before the first contact |
+
+## Step 6. Re-measure
+
+Repeat steps 2 and 4 on an ordinary week a month after launch. The implementation worked if the chosen drop shrank. If it did not, the leak was elsewhere or the fix addressed the wrong symptom
+
+## Rules for the build
+
+- answers come from the business's own documents; anything not covered goes to a person
+- every request gets an owner and a visible step
+- people stay in the process for decisions and difficult conversations
+- the owner steps in only where a person is needed
+
+## Common mistakes
+
+- starting with a task that affects neither money nor customers
+- counting from memory instead of records
+- choosing the solution before finding the biggest drop
+- a bot that answers from general knowledge instead of the business's documents
+- skipping the second measurement
+
+![Employees working at computers](https://images.pexels.com/photos/7654133/pexels-photo-7654133.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Audit checklist
+
+- customer path written down
+- one week counted at every step
+- first reply time measured, including nights and weekends
+- ownerless places listed
+- biggest drop priced per month
+- first fix chosen from the symptom table
+- re-measurement date set
+
+More on how this audit is run for a business is on the [AI audit service page](https://matintellect.com/en/services/ai-audit) of my site
