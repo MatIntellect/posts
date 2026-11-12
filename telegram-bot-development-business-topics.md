@@ -1,31 +1,82 @@
-# Telegram bot development: business work in topics
+# Telegram bot development: workspace design with topics, bot roles and approval
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-telegram-bot-development-business-topics-1792808386.jpg)
+Type: workspace design note. Reader: a developer or team lead moving team workflows into a Telegram group with AI bots. Goal: define topics, bot roles, who may instruct bots and which actions need a human yes. Limits: describes my own setup and general Telegram behaviour; check the current Bot API documentation for details
 
-## The visible and executable parts of a bot
+![AI-generated illustration of Telegram bot development with topics](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-telegram-bot-development-business-topics-1792808386.jpg)
 
-A Telegram conversation is the part a person interacts with. The program behind it decides what happens to a request. Keeping these parts separate helps explain what bot development actually involves
+## Reference workspace
 
-Commands and message buttons provide ways to choose an action. Text, files and voice messages provide other inputs. A program receives those inputs and handles them; an AI model supplies open-ended conversation when that is part of the implementation. Connections to other services require their own integrations
+A group called "Factory" with topics for ideas, posts, design, copywriting, marketing, video, publishing and an archive. A team of 8 AI agents works there, each in its own topic, and listens only to approved people. Separately, my personal agent Jes has run in Telegram for 134 days and delivers a morning plan as one message, 127 days in a row
 
-Telegram documents its supported interaction elements in the [bot features reference](https://core.telegram.org/bots/features). For a custom screen within the messenger, its Mini Apps platform supports a separate interface. A form can live there when a sequence of chat messages is not a suitable way to present it
+| Topic | Bot role | Output |
+|---|---|---|
+| Marketing | Marketer | Morning brief from 20 live questions and 10 topics; 80 briefs in three months |
+| Design | Designer | Image after approval of its description; 94 images |
+| Ideas | Content factory | Topic cards with Interesting and Skip; 13 sources watched around the clock |
+| Posts | Content factory | Previews; 84 posts published, none without approval |
+| Video | Subtitle helper | Clip ready in about 2 minutes after one word |
 
-![Messaging](https://images.pexels.com/photos/6669813/pexels-photo-6669813.jpeg?auto=compress&cs=tinysrgb&w=1600)
+## Why this layout
 
-## Topics provide a place for the conversation
+Topics organise conversation, but they do not do work. The value comes from pairing each topic with one bot that has one role and a clear output, so the team knows where to look and what to expect. Buttons turn decisions into a single tap in the place where the question arrived; in my own setup topics, post previews and image descriptions all reach me as cards. Voice notes matter more than they seem: an owner on the move can say a task instead of typing it, and the bot handles it like text
 
-An additional organizational layer comes from groups with separate topics. I use this arrangement in a group called "Factory", where different work areas have their own threads: ideas, posts, design, copywriting, marketing, video, publishing and archives. That is not the entire list
+Approval is part of the layout, not an afterthought. Agents listen only to approved people, and anything that publishes, spends or deletes waits for a human yes. Without that, a busy group eventually produces a request that should never have been executed
 
-Each thread keeps the conversation about its area together. To return to design, you open its topic; to return to marketing, you choose that one. The conversations belong to a shared group while remaining distinct. I find this particularly convenient for working with bots
+Notifications need discipline. If every event becomes a message, people stop reading. Bots should post only what needs a reaction, plus at most one short daily summary
 
-Creating those topics does not implement the underlying tasks. They organize where people and bots exchange messages. The model and any connected services still sit behind the Telegram-facing program. Interface structure and execution logic have different responsibilities
+## Telegram building blocks
 
-![Organizing work](https://images.pexels.com/photos/4623475/pexels-photo-4623475.jpeg?auto=compress&cs=tinysrgb&w=1600)
+| Block | Use |
+|---|---|
+| Forum topics | One direction per thread; bots stay in their own |
+| Inline buttons | Decisions in one tap: approve, rewrite, skip |
+| Commands | Explicit triggers for a bot |
+| Files, text, voice | Inputs; voice notes are transcribed and handled like text |
+| Mini Apps | Own interface inside Telegram when cards are not enough |
 
-## Choosing how someone interacts
+![Working in a messenger](https://images.pexels.com/photos/4623475/pexels-photo-4623475.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-A button under a reply can be enough to select an action. A custom Mini App screen becomes relevant when the interaction needs its own form. Both options send a request into the system; neither removes the need to implement what follows it
+## Rules
 
-I described the arrangement and my group example on my blog: [Telegram bot development: business work in topics](https://matintellect.com/en/posts/telegram-bot-development-business-topics)
+Topics:
+- named after work, not people
+- one direction per topic
+- split a topic when people get confused; delete one nobody uses
 
-For business, I consider Telegram one of the most capable available platforms. My starting point for automation is the messenger where I already spend most of my time, which in my case is Telegram. That choice puts the interface in a familiar place, while topics allow each work area to keep its own conversation. Which messenger do you use most?
+Bots:
+- one role, one topic
+- instructions only from approved people
+- decisions arrive as cards with buttons
+- publishing, spending and deleting only after a human yes
+- messages only when someone must react, or one daily summary
+
+## Rollout
+
+| Step | Done when |
+|---|---|
+| Pick the most frequent team task | Task named in one sentence |
+| Create group and first topic | Topic named after the work |
+| Add one bot with one role | Bot answers only in its topic; approved senders set |
+| Add buttons for decisions | Decisions take one tap |
+| Connect the process behind the buttons | Tapping a button actually does the work |
+| Add the next topic | First topic runs without attention |
+
+![A team at work](https://images.pexels.com/photos/6669813/pexels-photo-6669813.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Telegram limitations
+
+| Limitation | Consequence |
+|---|---|
+| Bot cannot message a user who never wrote to it | Customers must start the conversation |
+| Bots in groups do not see all messages by default | Privacy setting must be changed for group bots |
+| Customers live in other messengers | Team work and customer chat often run in different channels, connected by the system |
+
+## Anti-patterns
+
+- Ten topics and ten bots on day one
+- Topics named after people
+- Bots that accept instructions from anyone in the group
+- Buttons with no process behind them
+- Expecting customers to move to Telegram because the team likes it
+
+A setup like this, with roles and approval rules, takes about 2–3 weeks. More on the [AI development page](https://matintellect.com/en/services/ai-development)
