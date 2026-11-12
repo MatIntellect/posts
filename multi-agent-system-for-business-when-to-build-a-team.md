@@ -1,31 +1,96 @@
-# Multi-agent system for business: when to build a team
+# Multi-agent system for business: role cards and handoff rules
 
-![Обложка](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-multi-agent-system-for-business-when-to-build-a-team-1793173075.jpg)
+Type: design template with filled examples. Reader: a developer or technical founder deciding whether to split one AI agent into a team, and how to describe each role. Goal: make the split decision from evidence and specify every role and handoff before building. Limits: a planning template in prose and tables; no runnable code or configuration
 
-A multi-agent setup is not a goal by itself. If a business has a small number of tasks and a few straightforward scenarios, a single general-purpose agent can be enough. Adding roles becomes useful when a recurring area of work needs its own knowledge, memory, and tools
+![AI-generated illustration of a multi-agent system for business](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-multi-agent-system-for-business-when-to-build-a-team-1793173075.jpg)
 
-I use the same question I would ask when hiring an employee: what work is this role actually responsible for? The answer matters more than how many agents appear on a diagram
+## Reference systems
 
-## Define an output for each role
+Verified facts, as published on my project pages:
 
-Consider a content workflow. A copywriter prepares a post from a topic and source material. A designer creates an image based on the post's message. Those jobs have different outputs, so each role can be given a clear assignment and the tools suited to it
+- my personal agent Jes runs 10 scheduled jobs on her own and hands other bots only work that needs a separate skill; it stays a single agent
+- my content team is 8 agents on one server, designed as one architecture with clear roles; marketer, copywriter and designer each work in their own Telegram topic, and tasks can be given by text or voice in that topic
+- a program collects 20 live questions people ask AI and 10 topics each morning; the marketer adds what worked yesterday
+- over three months the team produced 80 morning briefs and 94 images; publishing goes through a content pipeline only after my approval, and agents neither publish nor spend on their own
+- models: Sonnet 5 and Opus 5.5, assigned per role
+- a clinic runs a team of 6 agents the same way on the owner's own server; launching such a team takes about 2–3 weeks
 
-For the writing role, a generic instruction to produce posts is not much of a setup. Examples of the author's style, rules for addressing readers, and things that must not be added to the text are all relevant inputs. The agent needs those alongside its writing skills
+## Split decision
 
-![Writing workspace](https://images.pexels.com/photos/7968765/pexels-photo-7968765.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+| Test | Split if |
+|---|---|
+| Repetition | The task repeats systematically |
+| Knowledge | It needs its own knowledge base |
+| Memory | It needs its own memory of corrections |
+| Tools | It needs its own tools |
+| Evidence | The single agent is corrected in this area more than in others |
 
-Edits can also supply lessons. If a repeated idea is removed during review, that correction can be retained as a rule for later work. The point is to use the feedback as part of the agent's memory, rather than assuming that a job title will make it understand the author's voice
+If fewer than the first three hold, keep one agent
 
-## Define the handoff
+## Role card
 
-The designer does not need every writing instruction. It needs the message of the post, the requested format, and the visual requirements. Its own skills and tools cover image or video work
+| Field | Content |
+|---|---|
+| Role | One line |
+| Assignment | The result expected |
+| Input | What it receives and from whom |
+| Output | What it hands on and to whom |
+| Knowledge | Rules, examples, documents |
+| Memory | What it keeps after corrections |
+| Tools | What it uses |
+| Check | Who reviews before handoff |
+| Never alone | Publishing, spending, messaging clients |
 
-The handoff matters because a post can change. An image based on an early draft may no longer fit after the text is revised. Decide which version becomes the design brief, then check the finished text and image together. A person can perform that review; the important thing is that the process makes clear who does it
+A role with an empty field is not ready
 
-![Design workspace](https://images.pexels.com/photos/23508096/pexels-photo-23508096.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+![A writing workspace](https://images.pexels.com/photos/23508096/pexels-photo-23508096.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-The distinction between roles therefore includes both boundaries and connections. Each agent gets the information needed for its own job, and the output of one can become an input for another. Separating a workflow does not remove the need to review its result
+## Filled cards
 
-Treat an agent like a separate employee: you would not expect one secretary to be an accountant, programmer, and designer at the same time without eventually exploding. On the other hand, a small workload does not need an entire team
+| Field | Copywriter | Designer | Marketer |
+|---|---|---|---|
+| Assignment | Post text and three headline options | Image for the post | Morning brief and a suggestion for today |
+| Input | Topic and source material | Approved topic, meaning of the post, image requirements | 20 live questions and 10 topics from a program |
+| Knowledge | Writing rules and style examples | Format, visual style, what must be in frame | What worked yesterday |
+| Memory | Lessons from corrections | Own lessons, not writing rules | Own history |
+| Check | Owner chooses the headline | Draws only after the owner's yes | Owner reads the brief |
+| Never alone | Publishing | Publishing | Publishing and spending |
 
-The work of defining those responsibilities and connecting them belongs to [AI system architecture](https://matintellect.com/en/services/ai-architecture)
+## Handoff rules
+
+- only approved versions move on, never drafts
+- every handoff has a named checker
+- the finished pair, text and image, is checked together
+- publication is a separate step and needs human approval
+
+Reason: most failures in agent teams happen at handoffs, not inside roles. An image drawn from a draft stops matching once the text changes
+
+## Flow of one post
+
+1. Marketer sends the morning brief
+2. Owner picks a topic and assigns it in the copywriter's topic
+3. Copywriter writes and offers three headlines
+4. Owner chooses and approves the text
+5. Designer receives the approved meaning and draws after the owner's yes
+6. Pair is checked together
+7. Content pipeline publishes after approval
+
+## Memory separation
+
+One shared memory grows and starts to interfere: a writing lesson pulls into images and an image lesson into text. Separate memories keep each lesson where it applies
+
+![Working with a graphics tablet](https://images.pexels.com/photos/7968765/pexels-photo-7968765.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Common mistakes
+
+- building a team before one agent has worked on real tasks
+- a role with a title but no assignment
+- one shared rule base for all agents
+- passing drafts downstream
+- letting agents publish or spend without a person
+
+## Verification
+
+Log corrections per area before and after a split. If corrections in the split area did not drop, the problem was the rules, not role mixing
+
+More on how agent teams are designed is on the [AI architecture service page](https://matintellect.com/en/services/ai-architecture) of my site
