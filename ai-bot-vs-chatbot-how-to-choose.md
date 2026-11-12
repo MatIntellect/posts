@@ -1,33 +1,81 @@
-# AI Bot vs Chatbot: How to Choose
+# AI bot vs chatbot: decision table for program steps and model steps
 
-![A railway switch with two routes](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-bot-vs-chatbot-how-to-choose-1793847670.jpg)
+Type: design decision guide. Reader: a developer or product owner scoping a bot for a business. Goal: decide, step by step, which parts are an ordinary program and which need a language model, and where checks go. Limits: guidance from my own systems; adapt the markers and examples to your domain
 
-A bot does not need a language model to run on a schedule, remember information or connect to a service. An ordinary program can do those things too. The distinction is in how the system handles its work: code can prescribe the steps, while an AI bot can use a language model to interpret varying requests and decide what to do within its permissions
+![AI-generated illustration of an AI bot vs a chatbot](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-bot-vs-chatbot-how-to-choose-1793847670.jpg)
 
-I use both. For processes that must follow a strict sequence, I use regular Python bots. For work involving different scenarios and more flexibility, I use AI bots
+## Definitions
 
-## The predictable part
+| | Ordinary bot (program) | AI bot (model attached) |
+|---|---|---|
+| How it chooses actions | Rules written by the developer | Interprets input, chooses within allowed actions |
+| Consistency | Same result every time | Can vary between runs |
+| Running cost | Almost none | Tokens or subscription quota per call |
+| Memory, schedule, files | Possible, built by the developer | Possible, also built by the developer; the model does not provide them |
+| Weak spot | Unforeseen cases | Confident wrong answers |
 
-Take a daily report. A program reads a spreadsheet, applies a specified calculation and delivers the result to Telegram. A scheduler starts it at the right time. No language model is necessary because the operation is already defined
+## Reference systems
 
-The program can handle branches too. If the file is empty, it might stop and report a problem instead of calculating. Those conditions have to be implemented in advance, but they can still cover more than a simple button menu. Storage, external APIs and file access are all available to conventional programs
+| System | Program part | Model part |
+|---|---|---|
+| Morning plan | Everything: calendar, tasks, reminders; 127 days in a row; reminders checked every 5 minutes, 240 sent | None |
+| Content factory | Watches 13 sources, selects topics, checks, publishes | Gathers material, writes in my voice, checks facts |
+| Marketer brief | Python program collects 20 live questions and 10 topics | Agent adds what worked yesterday |
+| Clinic chatbot | Prices from the price list | Natural-language answers only from documents covering about 114 price items and 48 services |
 
-![A programmer working at a laptop](https://images.pexels.com/photos/36496927/pexels-photo-36496927.jpeg?auto=compress&cs=tinysrgb&w=1200)
+![Working with a program](https://images.pexels.com/photos/36496927/pexels-photo-36496927.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-## The variable part
+## Step assignment rules
 
-A request to research a question is different. Its wording and the information needed can change each time. An AI bot can interpret the request, ask for clarification, use a search tool and assemble a referenced summary
+| If the step | Assign to | Notes |
+|---|---|---|
+| Is the same every time | Program | |
+| Produces exact data: price, date, count, total | Program | Even inside a conversation |
+| Needs interpretation of free text | Model | Followed by a check if output matters |
+| Writes wording for a person | Model | Numbers inserted from program output |
+| Decides on money, clients or publishing | Human | Model or program prepares, human approves |
 
-There is a boundary between producing a request and doing something in another system. As the [OpenAI function-calling documentation](https://platform.openai.com/docs/guides/function-calling) explains, a model can ask the application to call a function; the application executes the code and supplies the result. Calendar access, file operations and other actions require tools and permissions, not just a model name
+Test for a model step: can it be described without "depending on", "as appropriate" or "work out what they meant"? If yes, it is a program step
 
-Likewise, persistent memory has to be stored somewhere, and periodic work needs a scheduler. The language model does not automatically provide either capability simply by being connected
+## Combining program and model
 
-![A person looking at a digital display](https://images.pexels.com/photos/9783346/pexels-photo-9783346.jpeg?auto=compress&cs=tinysrgb&w=1200)
+The usual answer is both. A program keeps the order of steps and a model handles content: the program receives a message, hands it to the model for a draft, checks the draft passed the required stages, and only then sends it on for approval. If the model slips, the program catches it; if the program meets an unforeseen case, the model helps interpret it. Function calling is the bridge: the model asks the application to act, and code performs the action and returns the result
 
-## Put them together
+## Worked example (teaching)
 
-A useful system can combine a fixed workflow with flexible interpretation. A program receives an incoming message and keeps track of required stages. A model prepares a response based on its content. The program then checks the stages and submits the draft for human approval
+Job: evening summary of incoming requests for a manager
 
-Decide what the bot may read, what it may change and when a person must take over. A confident-sounding model response can still be wrong, so consequential data and actions need checks
+| Step | Owner |
+|---|---|
+| Fetch requests from the sheet | Program |
+| Count received, handled, lost | Program |
+| Find recurring complaints in comments | Model |
+| Compose message: numbers plus short conclusion | Program inserts numbers, model writes conclusion |
+| Send to Telegram | Program |
 
-This is part of how I approach [AI development for business](https://matintellect.com/en/services/ai-development): understand the work first, then decide which parts need a model and which are better handled by ordinary code
+One step in five needs a model
+
+## Questions for whoever builds the bot
+
+- Which steps use a model, and why
+- Where prices, dates and numbers come from
+- Who checks model output before it reaches a customer
+- Where memory is stored and how scheduling is configured
+- What the model will cost per month at your volume
+
+![Discussing a decision](https://images.pexels.com/photos/9783346/pexels-photo-9783346.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Diagnosis table
+
+| Symptom | Likely cause |
+|---|---|
+| High monthly cost for simple repetitive work | Model used where a program would do |
+| Frequent failures on unusual wording | Program used where interpretation is needed |
+| Confident wrong numbers | Exact data assigned to the model |
+| Bot forgets previous conversations | Memory not implemented |
+
+## Why not everything on the model
+
+A single prompt that does everything is quick to start and hard to live with: every call costs money, the same case is handled differently on different days, wrong numbers hide in fluent text, and failures are hard to locate because everything sits in one instruction. Splitting steps costs a little more at build time and pays back in cost, consistency and debuggability
+
+More on choosing and building bots on the [AI development page](https://matintellect.com/en/services/ai-development)
