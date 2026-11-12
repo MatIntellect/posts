@@ -50,6 +50,6 @@ Since October 28, the factory has compared my edits with channel rules and added
 
 A practical review record can contain the source, the incorrect output, the desired correction and a case that should continue to work. Do not publish real private material when creating such an example. Run the new check after a change and review earlier cases as well. This is a recommended method, not a claim that a specific automated test suite has run here
 
-In my process, preparation that took around an hour now takes roughly 5 minutes to a finished preview. That number is tied to this workflow; it does not establish performance for another implementation. The operational question remains whether each result can be examined before the next stage
+In my process, preparation that took around an hour now takes roughly 5 minutes to a finished preview. That number is tied to this workflow; it does not establish performance for another implementation. The operational question remains whether each result can be examined before the next stage. For scale: the input side reads 13 sources, and 84 posts have been published through this process, each only after a separate human approval
 
 My [article on delegating tasks to an AI employee](https://matintellect.com/en/posts/ai-employee-what-tasks-should-i-automate) gives the broader context. For an implementation, start with one bounded input and one observable output. Add the next stage only when the earlier one can be checked, and keep the person responsible for the external decision explicit
