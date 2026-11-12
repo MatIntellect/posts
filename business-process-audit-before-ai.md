@@ -1,31 +1,92 @@
-# Business process audit: what to check before AI
+# Business process audit before AI: data inventory template
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-business-process-audit-before-ai-1794010880.jpg)
+Type: audit template. Reader: an owner, operations lead or consultant preparing a business for AI. Goal: inventory which data is already collected, find what is missing or cannot be linked, and turn the findings into a short, checkable list. Limits: a planning template in prose and tables; it ships no code or configuration, and the example fields are teaching material
 
-An AI system can only analyze events it has some record of. If inquiries disappear into private chats or work happens without being logged, connecting a model won't reconstruct the missing history
+![AI-generated illustration of a business process audit before AI](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-business-process-audit-before-ai-1794010880.jpg)
 
-That's a recurring issue I see in AI audits: the business wants better visibility, but the underlying information isn't being collected. Before changing a process, check what you can actually observe
+## Reference setup
 
-## Follow one inquiry
+Verified facts, as published on my project pages, from my own business where the data is already collected in one place:
 
-Start at the point where a potential customer gets in touch. Identify where the message arrives, who receives it, whether it gets passed on and where the outcome is recorded. If those steps live in separate places, the first task is understanding whether they can be connected
+- every client call becomes a transcript, a summary, tasks and a CRM card; a 57-minute call is processed in about 10 minutes
+- about 40 calls with 15 clients have gone through the system
+- a daily plan is assembled each morning from calendar, tasks and reminders, 127 days in a row
+- a marketing agent collects 20 live questions people ask AI and 10 topics each morning
+- long client calls are transcribed on my own computer, so clients' voices do not leave it
 
-Don't mistake an empty report for evidence that every request was handled. A gap in the records is a finding in its own right. It tells you which events need to be captured from now on
+## Principle
 
-![Data on a laptop](https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&w=1200)
+During the audit, change nothing. First give AI access so it can start counting and building a record. Decide on changes once the data shows where time, resources and clients are lost. AI cannot reconstruct events that were never recorded
 
-## Look at the cost of the work
+## Inventory table
 
-Next, examine repeated tasks, the time spent on them and the resources involved. Compare the information already available in task systems, calendars, spreadsheets and payment records. You may discover that some pieces cannot be matched yet; write down those gaps rather than asking AI to fill them by guesswork
+Fill in one row per area
 
-My agents continuously analyze conversations, customer calls, cash flow, development and system health. That depends on access to the relevant sources. A system can count recorded events and help surface patterns, but it needs real inputs before its conclusions mean anything
+| Area | Questions | Typical finding |
+|---|---|---|
+| Customer path | Where does a request appear, who receives it, what happens next, where is the result recorded? | Requests live only in employees' personal chats |
+| Time and resources | Which tasks repeat, how long they take, what they cost | Hours spent on work that appears in no record |
+| Money and source | Are payments visible, is each paying client's source recorded? | Payments visible, source missing; channels cannot be compared |
+| Storage and links | Which systems hold data, is there a shared field such as the client contact? | Records exist but cannot be joined |
+| Access and rights | Which data the task needs, who can see it, may it be passed to the chosen service? | Access wider than the task requires |
+| Existing agents | What works, what is broken, where the keys are, what spends money | Agents that look alive but do no work |
 
-## Observe before rebuilding
+## Checks per area
 
-There is no need to redesign every operation on day one. Pick a process, give the system access to the relevant information and start recording what happens. Once there is enough reliable context, review the findings and decide which changes are worth making
+| Area | Check |
+|---|---|
+| Customer path | From records alone, count last week's requests and how many were answered |
+| Time and resources | Have each person log repeated work by the hour for a week and compare with expectations |
+| Money and source | For the last ten payments, find the client's source in records |
+| Storage and links | Reconstruct one recent paying client's path end to end from records only |
+| Access and rights | For each connection, write one line: what it sees and why |
+| Existing agents | Inspect without changes; list working, broken, keys, spend |
 
-Access matters as much as analysis. Limit it to what the task requires, check where information is stored and who can see it, and verify important conclusions against the original records. Human review remains important before actions affecting customers or money
+![Data and charts on a laptop screen](https://images.pexels.com/photos/577210/pexels-photo-577210.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-![Working with information](https://images.pexels.com/photos/95916/pexels-photo-95916.jpeg?auto=compress&cs=tinysrgb&w=1200)
+## Recording template for one process (teaching example)
 
-I describe this kind of assessment in my [AI audit approach](https://matintellect.com/en/services/ai-audit). The point is straightforward: first make the operation visible, then decide what technology should do with that visibility
+| Field | Example values |
+|---|---|
+| Received at | Date and time |
+| Channel | Site, messenger, call, comment |
+| Received by | Person or bot |
+| First reply at | Date and time |
+| Next step | Booking, invoice, refusal, silence |
+| Outcome | Paid, lost, pending |
+
+Keep it to six or seven fields and record every day. After a couple of weeks it shows where requests stall longest and why
+
+## Choosing the first process
+
+- prefer a process that directly affects money or clients: requests, bookings, payments
+- avoid processes where the result cannot be defined
+- one process at a time
+
+## Existing AI systems
+
+If agents already exist but are unfinished or failing, the audit starts the same way: inspection without changes. Only then is it clear what to finish and what to rebuild. Finishing such a system takes 1–2 weeks depending on its size
+
+## Output format
+
+| Item | Content |
+|---|---|
+| Collected | Data already recorded and linkable |
+| Missing | Data to start recording |
+| Losses | Where clients, time or money are lost |
+| Start with | The first process to change |
+| Check in a month | How each item will be verified |
+
+An item without a check is a wish, not a finding
+
+![Work documents and data on a desk](https://images.pexels.com/photos/95916/pexels-photo-95916.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Common mistakes
+
+- changing processes before they are recorded
+- connecting AI to everything instead of the data for one task
+- treating gaps as audit failure instead of findings
+- expecting AI to recover unrecorded events
+- delivering a presentation instead of a checkable list
+
+More on how this audit is run is on the [AI audit service page](https://matintellect.com/en/services/ai-audit) of my site
