@@ -81,4 +81,6 @@ The broader design of [AI agents for business](https://matintellect.com/en/servi
 
 ![Two people review data at a laptop](https://images.pexels.com/photos/7693155/pexels-photo-7693155.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
+Here is how it works in my own setup. A separate program collects 20 live questions people ask AI and 10 topics every morning, and the marketer agent adds what worked yesterday and suggests what to post today. Over three months that produced 80 daily briefs and 94 images, and I made the decision at every step: the agent never publishes or spends anything on its own
+
 To reproduce, run the file, confirm the three output lines, then change the sample rows and observe whether a missing or duplicated day is visible. For a real deployment, add tests against the source's actual contract and verify permissions before connecting it
