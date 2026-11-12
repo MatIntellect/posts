@@ -1,33 +1,81 @@
-# AI call analysis: how it works
+# AI call analysis: pipeline, summary formats and rollout checklist
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-call-analysis-how-it-works-1791882993.jpg)
+Type: pipeline specification with summary templates. Reader: a developer or operations lead setting up AI analysis of client and sales calls. Goal: define the chain from recording to tasks, the summary format per role, privacy choices and how to verify quality. Limits: describes my own setup; templates are teaching material
 
-The call ends, and after it is processed I hold its complete breakdown: topics, conclusions, owners, deadlines and tasks - already sitting in a task manager with dates and assignees. No secretary, no manual notes. Artificial intelligence does it. I use call analysis literally after every conversation; for a modern business it has become an integral part of the workflow
+![AI-generated illustration of AI call analysis](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-call-analysis-how-it-works-1791882993.jpg)
 
-![Photo](https://images.pexels.com/photos/8204350/pexels-photo-8204350.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+## Reference setup
 
-## The pipeline
+Recordings are dropped into a chat. Long calls are transcribed on my own computer, so client audio never leaves it. A call of almost an hour becomes a transcript in about 10 minutes; the summary, agreements, dated tasks and an updated CRM card follow in the same pass. About 40 calls with 15 clients processed. A morning plan from calendar, tasks and reminders has arrived 127 days in a row; 240 reminders sent, checked every 5 minutes. Building the full chain takes about 2–3 weeks
 
-The mechanics are simple. Record the conversation. Hand the recording to your own AI, which analyzes the call in a format you defined and returns a summary shaped the way you need. The whole trick lives in the format: it is what turns talk into manageable data
+## Pipeline
 
-The structure I recommend: main topics discussed, conclusions, owners, deadlines, and the tasks that go into the tracker. Who said what matters less than who must do what by which date. For me the entire conveyor runs automatically - hang up, receive the finished breakdown, tasks placed with dates and owners, not a single manual note
+| Step | Input | Output |
+|---|---|---|
+| 1. Record | Call | Audio file |
+| 2. Transcribe | Audio | Text, locally for client calls |
+| 3. Summarise | Text, role format | Summary with blocks |
+| 4. Validate | Summary | Pass, or problems sent back |
+| 5. Create tasks | Task lines | Tasks with owner and date |
+| 6. Update CRM | Summary | Client card updated from the recording |
+| 7. Remind | Tasks | Reminders when due; morning plan |
 
-## Where the real value shows up
+![A manager on a call](https://images.pexels.com/photos/1226398/pexels-photo-1226398.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-The obvious effect is saved time, but the deeper one is a way to keep the agreed tasks visible. A manager's memory is the bottleneck of any business: after many calls, keeping track of each owner and deadline gets difficult
+## Why each step exists
 
-There is a second layer that only appears when you run this across a whole team. Process your managers' calls the same way, and suddenly the summaries can give a manager a structured starting point for reviewing the calls. They do not replace listening to the recording when nuance matters
+Local transcription keeps client audio on your own machine; only text reaches the model that writes the summary. Validation sits between the summary and the task list because vague output, such as "discussed the contract", becomes a task nobody owns, and a list full of those stops being trusted. CRM updates come from the recording rather than from memory, which is where most missing details used to come from. Reminders and the morning plan close the loop: a task with a date is only useful if someone is told when that date arrives
 
-## A working template, not a verdict
+Starting small works best. Run transcription and summaries alone for a couple of weeks, compare them with recordings, then add tasks, CRM and reminders one by one
 
-For the summary, I split the conversation into separate fields. Topics tell me what was discussed. Conclusions show what we actually decided. Owners and dates tell me who carries the next action. A task without an owner or a deadline is not yet ready to enter the tracker. This separation matters more than a beautifully written narrative: it lets me act on the call without opening the recording again for every small detail
+## Summary formats
 
-## Nothing exotic underneath
+| Role | Blocks |
+|---|---|
+| General | Topics, conclusions, owners, deadlines, tasks |
+| Sales | Customer and need, questions and answers, objections, agreed next step, deadline and owner, promises made |
+| Projects | Decisions, scope or timeline changes, who does what by when, open questions, risks stated aloud |
 
-No custom hardware, no research lab. A recording, a transcription, a language model working through your template, and an integration that files the tasks. What used to be impossible is now available in practically any field, and it quietly pays for itself every single day
+Example (general): topics, launch timing and budget; conclusion, start with an audit; tasks, send the contract by Friday (me), share access by Wednesday (client)
 
-I wrote up the full process here: [AI call analysis: how it works](https://matintellect.com/en/posts/ai-call-analysis-how-it-works)
+## Rules for task lines
 
-![Photo](https://images.pexels.com/photos/1226398/pexels-photo-1226398.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+- Every task has an owner and a date
+- "Discussed X" is not a task
+- Dates are absolute, resolved against the call date
+- Unclear audio is marked "unclear, check", never guessed
 
-This is one of the workflows I now use after every call. It runs the same way every single day: the call ends, topics, conclusions and tasks are already in place, and I move on
+## Privacy
+
+| Choice | Consequence |
+|---|---|
+| Transcription in a third-party cloud | Client voices stored there |
+| Local transcription | Audio stays on your machine; summariser sees only text |
+
+Decide before the first recorded call
+
+![A daily task list](https://images.pexels.com/photos/8204350/pexels-photo-8204350.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Rollout checklist
+
+- [ ] Where recordings are stored and who can access them
+- [ ] Where transcription runs
+- [ ] Summary format per role
+- [ ] Two weeks of comparing summaries with recordings: names, dates, amounts
+- [ ] Task list connected
+- [ ] CRM and reminders connected
+- [ ] Team told what summaries are for: coaching, not surveillance
+
+## What managers gain after a month
+
+Accumulated summaries show the most common objections, where calls end without a next step and which conversations are good examples for the team
+
+## Team conversation
+
+Managers often read recording and analysis as control. If nobody explains the purpose, they get nervous on calls and look for ways around the system. Say plainly that the point is that no promise to a customer gets lost and that nobody has to write notes after every call, and agree that summaries are used for coaching, not for punishment
+
+## A habit that improves accuracy
+
+At the end of each call, say the agreements out loud: "I send the contract by Friday, you share access by Wednesday." That single sentence makes it far more likely the tasks are extracted correctly, especially on noisy recordings
+
+More on calls and voice AI on the [voice AI agent page](https://matintellect.com/en/services/voice-ai-agent)
