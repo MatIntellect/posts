@@ -1,35 +1,84 @@
-Original: [Why do you need an AI content factory?](https://matintellect.com/en/posts/why-do-you-need-an-ai-content-factory)
+# AI content creation: content factory pipeline with author approval
 
-# Why do you need an AI content factory?
+Type: pipeline description and design worksheet. Reader: a developer or marketer planning an AI-assisted content pipeline for several social platforms. Goal: lay out the stages from topic discovery to multi-platform publishing, with the author's decision kept as an explicit step. Limits: describes the structure of a working setup in prose and tables; it does not ship runnable code, and the worksheet is a teaching template
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-why-do-you-need-an-ai-content-factory-1791429378.jpg)
+![AI-generated illustration of AI content creation](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-why-do-you-need-an-ai-content-factory-1791429378.jpg)
 
-I built a content factory because I really dislike managing social media, especially when there is more than one account to run. When I launched several of my projects, I had to manage Telegram, Instagram, Facebook, YouTube, Threads, a website and other channels separately. It takes a lot of time, especially when each platform needs different content written for its audience
+## Reference system
 
-## Where the ideas come from
+My own content factory, as described on its project page: 13 sources watched around the clock, topics delivered as Telegram cards, facts checked before drafting, posts written in my voice per platform, a preview before publishing. About an hour of manual work per post became about 5 minutes to a ready preview. 84 posts published, none without my approval. Building one, including connecting the platforms, takes about a week
 
-An agent collects topics from channels I follow. These are suggestions for me: I can look through them and choose something I want to write about. A list of topics is not yet a finished article or a decision about what should be published
+## Why not full automation
 
-![Photo](https://images.pexels.com/photos/7970812/pexels-photo-7970812.jpeg?auto=compress&cs=tinysrgb&w=1400)
+Readers notice AI-written text; in my experience it gets fewer views and weaker reactions. Only the author knows what happened in their work this week. The pipeline therefore automates preparation and keeps choice and approval with the author
 
-I can pick a suggested idea or bring my own. Then I hand it to the factory for reworking. All of this happens through Telegram, where I choose a topic and work on it. I do not have to start preparing a post separately inside each social network
+## Stages
 
-## What gets checked before publication
+| Stage | Input | Output | Who decides |
+|---|---|---|---|
+| 1. Monitoring | Watched sources | Deduplicated topic list with the strongest flagged | Machine |
+| 2. Selection | Topic card | Chosen topic, target platforms, optional voice comment | Author |
+| 3. Research | Topic | Source texts with links | Machine |
+| 4. Fact check | Topic and sources | Confirmed or rejected claims: names, numbers, dates, quotes | Machine, blocks on failure |
+| 5. Drafting | Sources, style description, sample posts, past edits | One draft per platform and language | Machine |
+| 6. Preview | Drafts | Post exactly as followers will see it, with publish, rewrite and own-picture buttons | Author |
+| 7. Publishing | Approved versions | Posts on each platform | Machine, only after approval |
+| 8. Learning | Author's edits | Updated rules for the next drafts | Machine |
 
-The next stage is checking the facts behind the idea. Does the thing I am writing about actually exist? Is there a link to an official announcement? Can a quotation support the claim? I want the material to be backed by information that can be checked, rather than just convincingly written text
+![Planning content](https://images.pexels.com/photos/6016365/pexels-photo-6016365.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-![Photo](https://images.pexels.com/photos/6016365/pexels-photo-6016365.jpeg?auto=compress&cs=tinysrgb&w=1400)
+## Platform versions
 
-## One click, different versions
+| Platform | Languages | Approval |
+|---|---|---|
+| Telegram | Russian and English | Separate |
+| Website | Russian and English | Separate |
+| Facebook, Instagram, Threads, YouTube | Own version each | Separate |
 
-Once the material is ready, I can publish it to all connected platforms with one click. The style of the post changes depending on the social network. I account for different audiences instead of simply distributing the same text everywhere
+Versions are written as separate texts for each audience, not translated or copied
 
-But no post goes out automatically without my supervision. Being able to publish quickly does not mean the factory decides what to say in my name. I remain involved between the suggested topic and publication
+## Style memory per channel
 
-## Why I do not recommend full automation
+| Item | Purpose |
+|---|---|
+| Style description | Sentence length, tone, words to use and avoid |
+| Sample posts | The author's best posts for that channel |
+| Past edits | Every correction, so the same edit is not needed twice |
 
-I think people can clearly tell the difference between your writing and something a neural network wrote for you. Based on actual results, AI-written posts get fewer views, weaker reactions and less engagement
+## Implementation notes
 
-That is why I do not recommend building a content factory that writes and publishes without its author being involved. You need an assistant for working with ideas and distributing material, not a stream of posts without your own voice and meaning
+Interface first. The whole loop runs in one chat: topic cards, voice comments, previews and approval buttons. The author never opens each platform separately, which is where most of the saved time comes from
 
-That is how my content factory works. I see AI content creation as a way to scale my work. Not to replace the author, but to let them manage social media as simply as possible
+Fact check before drafting, not after. Checking a finished draft tempts the reviewer to accept small errors because the text already reads well. Checking claims against sources first means a draft with an unsupported figure is never written at all
+
+Learning from edits is the long-term lever. A pipeline without it produces the same mistakes every day, and the author stops using it within weeks. With it, each correction reduces future rewriting
+
+Pictures are part of the post. The preview offers a button to replace the generated picture with the author's own photo or screenshot, which often works better than any illustration
+
+Start small. If building everything at once is too much, automate the stage that costs the most time first, usually research or rewriting for each platform, and add the rest once that stage runs without attention
+
+## Failure modes
+
+| Failure | Guard |
+|---|---|
+| Invented number or quote | Fact check against gathered sources before drafting |
+| Same text on every platform | One draft per platform from its own style memory |
+| Author's voice drifts | Edits saved and applied to later drafts |
+| Post goes out unseen | Publishing only from an approved preview |
+| Topic list mistaken for a plan | Topics are suggestions; selection is a human step |
+
+![Discussing social media](https://images.pexels.com/photos/7970812/pexels-photo-7970812.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Design worksheet (teaching template)
+
+- Platforms and languages:
+- Sources to watch:
+- How topics reach the author:
+- What counts as a checkable claim:
+- Style description per platform written: yes / no
+- Sample posts per platform collected: yes / no
+- Where edits are stored:
+- Who approves each platform version:
+- Rules for pictures (own photos, generated images, what is not allowed):
+
+More on content factories is on the [content factory page](https://matintellect.com/en/services/content-factory)
