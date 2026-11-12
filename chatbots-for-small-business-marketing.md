@@ -1,39 +1,81 @@
-# Chatbots for small business marketing
+# AI chatbot for small business: launch checklist and handover specification
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-chatbots-for-small-business-marketing-1791525778.jpg)
+Type: launch checklist and specification. Reader: a developer or owner setting up an AI receptionist for a salon, clinic, studio or shop. Goal: define what the bot answers, from which documents, when it hands over to a person and how success is measured. Limits: based on bots I have built; the templates are teaching material, not a tested configuration
 
-A chatbot in a small marketing budget has one job above all: never let an inbound message sit unanswered. This is what my own receptionist builds taught me about where the line between bot and human actually sits
+![AI-generated illustration of chatbots for small business marketing](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-chatbots-for-small-business-marketing-1791525778.jpg)
 
-## The strong ground
+## Scope
 
-Short fixed sequences - booking, reminders, typical questions. A bot never tires of them and never gets rude at the end of a double shift. The client gets what they came for without waiting on hold
+| Bot handles | Person handles |
+|---|---|
+| Prices and what a service includes | Selling and persuasion |
+| Free slots and booking | Objections such as "why are you more expensive" |
+| Address, directions, parking | Complaints |
+| Reminders, confirmations, rescheduling | Discounts, payment plans, any promise |
+| Typical questions answered in the documents | Anything not in the documents |
 
-![Flower shop owner taking an order over the phone](https://images.pexels.com/photos/3932728/pexels-photo-3932728.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+Reference: the most recent bot I built is for a clinic. It answers only from the clinic's documents, about 114 price items and 48 services, steers toward booking and passes anything else to the owner as a card. It was built and tested on real questions from the clinic's inbox. A bot like this, with testing, takes about 2–3 weeks
 
-## The failure ground
+## Why these boundaries
 
-Extended persuasion. Scripts degrade after three or four turns, and price objection handling is out of reach for current models no matter how you prompt them. Keep a human on that path from day one, and make the escape route obvious to the caller
+Bots do well on short, strict scripts and badly on long persuasion. By the third or fourth step of a rule-bound conversation a model starts losing the thread, and the customer feels they are being read a form. That is why selling and objections stay with people, and why the handover triggers above are deliberately simple
 
-![A frustrated caller during a phone conversation](https://images.pexels.com/photos/6028572/pexels-photo-6028572.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+The bot earns its place by speed, not by eloquence. In small businesses leads often go to whoever replies first. Evenings, weekends and rush hours, when the receptionist is busy or gone, are exactly where a fast, accurate answer about price and free time turns into a booking. Trying to make the bot sell as well usually costs more customers than it wins
 
-## The handover rule worth stealing
+## Documents to prepare
 
-The moment a conversation leaves the script - pricing pushback, an argument, a complaint - the bot passes the dialogue to a person with a short summary: who wrote in, what they asked, where it stopped. A client repeating their question twice means the automation was assembled wrong. Full approach in the post
+| Document | Contents |
+|---|---|
+| Price list | Current prices and what each service includes |
+| Service list | Short plain-language descriptions |
+| Booking rules | Schedule, how far ahead, duration of each service |
+| Location | Address, directions, parking |
+| FAQ | Answers the receptionist gives every day |
+| Handoff topics | Topics that always go to a person |
 
-## Why the night shift matters
+Starting point: list the ten most frequent questions from last month's messages and check which the documents answer. Fill the gaps before launch
 
-Leads that arrive while the owner sleeps either evaporate or go to the fastest responder. A bot converts them into a morning list: who wrote in, what they needed, when to call back. No ad budget needed - just coverage. This is the first place I deploy a bot in any small business, and the last place I trust it: booking is verifiable, persuasion is not
+![A shop owner taking an order by phone](https://images.pexels.com/photos/3932728/pexels-photo-3932728.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-## What I measure
+## Handover specification
 
-Booked appointments after dialogues, never dialogue counts. The transcripts that end without a booking hold every answer: they show where the script branches wrong, where the bot improvises instead of escalating, and where a single new rule recovers more revenue than a model swap ever would
+| Trigger | Action |
+|---|---|
+| Topic in the handoff list | Hand over immediately |
+| Third clarifying question in a row | Hand over |
+| No answer in the documents | Hand over; never improvise |
+| Customer asks if they are talking to a bot | Answer honestly and offer a person |
 
-## What stays human
+Summary sent with every handover: who wrote, what they asked, where the conversation stopped. The customer must not have to repeat the question
 
-Selling itself. At the first price objection the bot loses to a person, and forcing persuasion onto a script yields the wooden replies that gave support bots their reputation. Escalation is not failure here - it is the designed path. Losing one dialogue costs less than losing a customer
+## Channels
 
-## Rolling it out without a rewrite
+One core serves Instagram, WhatsApp and website chat. Documents and rules are written once; separate bots per channel drift apart and contradict each other
 
-Start with the single most frequent scenario and ship it behind a visible off-switch. Read the first week of transcripts yourself, not through a dashboard: the failure modes are obvious in the raw text and invisible in averages. Then extend one scenario at a time, keeping every escalation path shorter than the persuasion path. A bot you can turn off in one click is a tool; one welded into the phone system is a gamble
+## Rollout
 
-I wrote about how this works on my blog: [Chatbots for small business marketing](https://matintellect.com/en/posts/chatbots-for-small-business-marketing)
+| Phase | Scope | Check |
+|---|---|---|
+| Test | Real messages from the inbox, offline | Answers match documents; handovers fire correctly |
+| Launch 1 | Prices, slots, booking only | Read every conversation for a week |
+| Launch 2 | Add reminders and rescheduling | Drop-off points reviewed |
+| Ongoing | Add one scenario at a time | Each new scenario tested on real messages first |
+
+![An irritated customer on a call](https://images.pexels.com/photos/6028572/pexels-photo-6028572.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Metrics
+
+| Metric | Meaning |
+|---|---|
+| Bookings after bot conversations | The real result |
+| Conversations outside working hours and their bookings | Where the bot adds the most |
+| Handover reasons | Missing documents or unclear steps |
+| Step where customers drop off | Script too long or unclear |
+
+Not a success metric on its own: number of conversations
+
+## Operational notes
+
+Agree on how fast staff answer handed-over chats, including evenings and weekends; a handover nobody picks up is a lost customer. During the first weeks a receptionist reads all bot conversations and marks weak answers; each mark becomes an edit to the documents or rules. Give the bot a few real receptionist replies as a tone sample so it sounds like the business
+
+More on AI receptionists is on the [AI administrator page](https://matintellect.com/en/services/ai-administrator)
