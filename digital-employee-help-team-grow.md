@@ -1,35 +1,79 @@
-# Digital employee: how to help your team grow
+# Digital employee in a team: responsibility matrix and adoption plan
 
-![People build a ship together](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-digital-employee-help-team-grow-1793492208.jpg)
+Type: planning template with a filled teaching example. Reader: a team lead, operations manager or developer introducing an AI system with defined duties into an existing team. Goal: keep every duty owned by a named person, keep risky actions behind a human, and give the team a clear adoption path. Limits: the matrix and plan are teaching material, not a tested configuration
 
-What happens to a specialist's work when a company replaces them with AI? The salary may disappear from the budget, but the questions the specialist used to answer still exist
+![AI-generated illustration of a digital employee helping a team grow](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-digital-employee-help-team-grow-1793492208.jpg)
 
-A manager can open an AI tool and ask it to produce a design, a legal draft or a marketing text. Knowing whether the result fits the actual situation is a different task. If the person with the relevant expertise has left, the manager may have to take on that judgement as well as the rest of their job
+## Position
 
-I have a personal reason for taking this seriously. After roughly four years in a marketing leadership position, I was fired when the company's director decided AI could replace most employees. The company closed six months later. In my experience, the director couldn't sustain the same workload at the same level
+A digital employee is an AI system with defined duties and rules: sorting requests, collecting leads, preparing drafts and summaries, handing difficult cases to a person. It is meant to let the same team do more, not to shrink the team. Someone has to give it tasks, check the output, catch convincing but wrong answers and own the result; removing the specialist moves all of that onto the manager
 
-## Define the work before handing it over
+Reference: I run a team of 8 AI agents with separate roles; over three months they produced 80 daily briefs and 94 images, and nothing was published without my approval. A team of 6 agents works for a clinic owner on his own server under the same rule. Building such a team for specific roles takes about 2–3 weeks
 
-A digital employee can be built as an AI system with a defined scope. For example, it can collect details from incoming enquiries, prepare a summary or draft an answer for someone to review. If the system is connected to the right services and configured with boundaries, it can also perform some actions itself
+## Responsibility matrix
 
-Autonomy is a design choice. Decide which actions are low-risk enough to allow, which need approval, and what should happen when the system meets a question outside its instructions. Someone on the team must know where to look when a result is wrong
+| Duty | System does alone | Hands to a person | Owner | Risky actions |
+|---|---|---|---|---|
+| | | | | |
 
-![Employees discussing a computer](https://images.pexels.com/photos/6804084/pexels-photo-6804084.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+Rules for filling it in:
 
-## Compare the economics carefully
+- Owner is a named person, never a department
+- Risky actions (publishing, spending money, messaging clients, deleting data) never run alone
+- Fill the matrix with the people who do the work, not for them
 
-Here's an illustrative calculation. Take a person paid $2,000 per month and an AI employee costing $200 per month. Assume the pair can deliver the same workload as five people. The comparison is $2,200 monthly for the pair versus $10,000 for five employees at that salary
+## Filled example (teaching only)
 
-Those numbers are assumptions, not evidence that AI multiplies every person's productivity fivefold. Implementation can add costs, and the result depends on the actual workflow. To make the comparison useful, test the intended work and include the time employees spend reviewing and correcting outputs
+| Duty | System does alone | Hands to a person | Owner | Risky actions |
+|---|---|---|---|---|
+| Morning brief | Collects sources, drafts topics | Choice of topic | Marketing lead | None |
+| Post drafts | Writes three headline options and a draft | Headline choice, edits, publishing | Copywriter | Publish |
+| Images | Describes the image | Approval before drawing, publishing | Designer | Publish |
+| Lead sorting | Records lead, source, request | Reply and price | Sales manager | Message client |
+| Invoice check | Compares invoice with contract | Any mismatch, payment | Accountant | Spend money |
 
-## Bring specialists into the test
+![A team at work](https://images.pexels.com/photos/3860805/pexels-photo-3860805.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-Choose one part of the workflow with the people who perform it. They can point out the repeated steps, necessary source material and exceptions a generic instruction would miss. Run the system against examples the team recognizes, then examine the results together
+## Adoption plan
 
-Training matters here. People need time to become comfortable with the tool, try different approaches and suggest changes. An AI specialist can help with implementation, but the team's knowledge of its own work remains valuable
+| Week | Step | Done when |
+|---|---|---|
+| Before start | Talk with the team: nobody leaves because of AI, the goal is to do more, anyone may stop the system | Concerns written down |
+| 1 | Pick one area with the people who work in it | Matrix row agreed |
+| 1 | The most experienced person tries the tool first | First corrections turned into rules |
+| 2 | Run on real tasks, measure checking time against doing time | Checking is faster than doing |
+| 3 | Widen to the rest of the area's team | Same mistake no longer repeats |
+| Month 1 | Retrospective: what got easier, what is awkward, what to hand over next | Next area chosen |
 
-![Colleagues learning a tool together](https://images.pexels.com/photos/3860805/pexels-photo-3860805.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+## Role changes to name out loud
 
-I describe how an [AI employee for business](https://matintellect.com/en/services/ai-employee) can be given responsibilities and escalation rules on my site
+| Role | Before | After |
+|---|---|---|
+| Copywriter | Writes everything from scratch | Edits, chooses, covers more directions |
+| Sales manager | Fills tables, chases follow-ups | Talks to more customers |
+| Manager | Collects information from chats | Reads summaries, makes decisions |
 
-I see AI as a way to help a team grow its capacity. The choice isn't just the cost of software versus a salary: it also includes the expertise and accountability needed to keep the work moving
+![Learning to work with AI](https://images.pexels.com/photos/6804084/pexels-photo-6804084.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Signs of healthy adoption
+
+- People suggest new duties for the system themselves
+- Checking output takes less time than doing the work
+- The same kind of mistake stops coming back
+- Anyone can stop the system without asking permission
+- The manager is not turning into an AI operator
+
+## Anti-patterns
+
+| Anti-pattern | Result |
+|---|---|
+| Rollout imposed without talking to the team | Quiet sabotage and return to old ways |
+| Area picked by the manager alone | Wrong area, missing edge cases |
+| Duty without a named owner | Errors nobody acts on |
+| Layoffs before the system proved itself | Manager carries specialist work and AI checking |
+
+## Illustrative cost model
+
+Not a promise: a specialist at 2000 dollars a month plus a digital employee at 200, handling the volume of five people, costs 2200 instead of 10000. The person stays and owns the result. Real numbers depend on the task, setup and implementation costs
+
+More on AI employees for teams is on the [AI employee page](https://matintellect.com/en/services/ai-employee)
