@@ -1,39 +1,68 @@
-# How much does an AI agent cost: what shapes the price
+# How much does an AI agent cost: a scoping worksheet and cost-driver reference
 
-![Separating an overloaded bundle into independent parts](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-how-much-does-an-ai-agent-cost-1792290476.jpg)
+Type: reference note and worksheet. Reader: a founder or developer preparing to commission or build an AI agent. Goal: turn "how much does an AI agent cost" into a defined scope that can be estimated. Limits: this note contains no prices; reference timelines come from my own projects and are not guarantees for yours. The worksheet is a teaching template, not a tested configuration
 
-Before estimating an AI agent, define what the system is expected to do. "Personal assistant" is a role description, not a complete list of functions. It could mean preparing a daily to-do list, reviewing conversations or connecting to many different services
+![AI-generated illustration of the parts that shape an AI agent's cost](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-how-much-does-an-ai-agent-cost-1792290476.jpg)
 
-Those choices change the work involved in building it. The label on its own does not give you enough information to compare two estimates
+## Cost drivers
 
-## The system behind the conversation
+| Driver | What it means | Why it changes the effort |
+|---|---|---|
+| Jobs | Concrete pieces of work: task list, triage, reminders, client replies, publishing | Each job has its own input, output and tests |
+| Connections | Services the agent reads or writes: mail, calendar, spreadsheet, messenger, drive | Each one needs setup, permissions and testing |
+| Approval gates | Actions that wait for a human yes | Each gate needs a card, buttons and a test that nothing leaves without the click |
+| Memory | What the agent keeps between conversations | Must be designed so it survives a model swap |
+| Schedule | Jobs that run on a timer rather than on request | Needs time-based testing and failure handling |
+| Resilience | Backup model, automatic restart | Prevents the agent from silently stopping |
 
-A normal GPT conversation gives you a place to ask questions and read answers. A separately configured agent runs on a computer or a remote server. Its setup includes memory, tools for carrying out work and the connections required for its tasks
+## Reference system
 
-It can keep performing configured jobs while the phone app is closed. Around-the-clock operation is possible when the underlying system is running and set up for it
+The numbers below describe my own setup, as published on my project pages. A personal agent, Jes, has been running for 134 days, runs 10 scheduled jobs and hands tasks to 7 other bots; 165 tasks have gone through her since July. Four action kinds always require my approval: deleting data, spending money, messaging clients and publishing. A separate content factory watches 13 news sources and has published 84 posts
 
-That is why developing an agent involves more than starting a chat. You need to define what information it retains and which tools it uses to perform the requested functions
+![Planning jobs before estimation](https://images.pexels.com/photos/39204858/pexels-photo-39204858.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-![Server equipment supporting a running system](https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&w=1600)
+## Reference timelines
 
-## Describe the scope before comparing prices
+| Scope | Typical duration in my projects |
+|---|---|
+| Personal agent with memory, approval rules, schedule and testing on real data | one to two weeks |
+| Narrow helper, for example video subtitles | from 3 days |
+| Sales chatbot across several channels | about 2–3 weeks |
+| Voice entrance on top of an existing system | about 2 weeks |
 
-Consider a helper for personal productivity. Preparing the day's tasks is one responsibility. Reading your conversations adds another. Connecting the assistant to a broad set of services adds more functionality to configure
+## One agent or several
 
-A larger set of connections makes development more expensive, though it does not automatically multiply the price. What matters is the actual collection of functions being built
+A single agent expected to cover marketing, copywriting, client work and design accumulates mixed memory and conflicting rules. Splitting by role usually makes each part simpler to configure and test. In the reference system, the coordinating agent does not write posts or draw images; dedicated bots do, and the coordinator only routes and tracks
 
-The scope also raises a question about how those functions should be distributed. Does one assistant really need every responsibility in the list?
+## Failure modes in estimation
 
-## Separate roles and separate memory
+| Failure | Symptom | Prevention |
+|---|---|---|
+| Vague job | The same word means different work to each side | Describe every job as input and output |
+| Hidden connection | A data source appears mid-project | List every source before estimating |
+| Missing gate | The agent can already send messages, the approval rule is not designed | Decide approval per job up front |
+| Optimistic testing | Works on samples, fails on real data | Budget time for testing on the client's data |
+| No correction loop | The same mistakes return after launch | Agree where corrections are written and read |
 
-I recommend assigning different agents to different areas: marketing, copywriting, design and customer work. Each direction gets its own specialist instead of becoming another responsibility of a single assistant
+![Budget review for an automation project](https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-Loading unrelated duties into one agent mixes both its functions and its memory. The more roles it has to cover, the harder it becomes to perform each particular kind of work well
+## Worksheet (teaching template)
 
-![Professionals working on individual responsibilities](https://images.pexels.com/photos/39204858/pexels-photo-39204858.jpeg?auto=compress&cs=tinysrgb&w=1600)
+Fill in before asking for an estimate. Untested template
 
-The human equivalent is easy to recognize. You would not expect one assistant to be your accountant, economist, receptionist and developer as well. These are different jobs, and they call for different specialists
+- Jobs, one line each
+- For each job: input source and expected output
+- Connections required, and which ones can be dropped
+- Actions that require approval
+- What the agent must remember between conversations
+- Which jobs run on a schedule and which on events
+- Who approves, and how quickly they usually respond
+- Where corrections will be written so the agent reads them next time
 
-I explain the connection between the estimate and this division of responsibilities in my blog post, [How much does an AI agent cost: what shapes the price](https://matintellect.com/en/posts/how-much-does-an-ai-agent-cost)
+## Ownership note
 
-For an agent project, a useful starting description therefore includes the daily work, the conversations to review and the services to connect. With those functions identified, you can decide where separate agents belong and estimate a defined scope instead of an assistant expected to do everything
+An agent hosted on your own server keeps its memory and rules with you and can be moved to another system. An agent hosted inside a third-party service usually cannot. This affects long-term cost more than the initial build
+
+The same applies to the correction loop. Rules the agent has learned from corrections are part of its value: in the reference system they made the agent more accurate over time than any new feature did. If those rules live only inside a vendor's platform, they are lost with the contract
+
+More on how these agents are scoped and built is on the [AI agent development page](https://matintellect.com/en/services/ai-agents) of my site
