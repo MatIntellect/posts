@@ -1,33 +1,91 @@
-# AI maintenance cost: what you pay per month
+# AI maintenance cost: monthly budget template for an AI system
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-maintenance-cost-per-month-1793331699.jpg)
+Type: budget template. Reader: an owner or operations lead planning the running cost of an AI system. Goal: list every monthly cost line, choose how to pay for models, and compare the total with the value the system frees. Limits: a planning template in prose and tables; no runnable code; prices quoted are my own bills, not quotes for anyone else
 
-I spend around $300 a month on the models and server behind my AI work. My recurring costs include $200 for Claude, $20 for ChatGPT, $20 for GLM and $30 for the server. I buy extra tools when a particular need comes up
+![AI-generated illustration of AI maintenance cost per month](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-maintenance-cost-per-month-1793331699.jpg)
 
-That setup supports roughly 2-3 large projects a month while I continue developing my own system. For the amount of work involved, I think AI is underpriced right now. You might disagree, but the alternative billing calculation is interesting
+## Reference budget
 
-## Subscription versus token usage
+Verified facts, as published on my project pages and site:
 
-I track usage and estimate what the same workload might cost if I paid the models' API rates directly. My estimate is roughly $30,000. That is not an invoice or a guarantee of savings for someone else; it is a comparison based on my own usage
+| Line | Monthly cost |
+|---|---|
+| Claude subscription | $200 |
+| ChatGPT subscription | $20 |
+| GLM subscription | $20 |
+| Server | $30 |
+| Total | about $300 |
 
-Tokens are pieces of text processed by a model. The price of an API request depends on the model and how many tokens go into the request and come back in the answer. Anthropic publishes [model pricing](https://docs.anthropic.com/en/docs/about-claude/pricing), including different rates for input and output
+- by my estimate, the same usage billed per token through the APIs would be about $30,000 a month; this is specific to my volume of work
+- this budget covers about 2–3 large projects a month plus development of my own system
+- on it, 8 Claude Code agents work every day; my personal agent Jes has run 10 scheduled jobs for 134 days and passed 165 tasks to other bots since July; the content pipeline has produced 84 posts; the marketing agent has sent 80 morning briefs over three months
+- client systems run on the client's own server and AI subscription; a clinic runs a team of 6 agents that way; assistants run for five people on their own servers
 
-![Servers](https://images.pexels.com/photos/17489151/pexels-photo-17489151.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+## How to read the reference budget
 
-A subscription is structured around a plan instead. The monthly fee is predictable, but usage limits still matter. Longer conversations, attachments, model choice and tools can affect the available allowance. Anthropic lists those factors in its [usage guidance](https://support.claude.com/en/articles/9797557-usage-limit-best-practices)
+The figure is small because subscriptions carry most of the load. Subscriptions and per-token billing are different products: a subscription is a flat price for work within a plan's limits, while an API bill scales with use and is paid separately from any chat subscription. The $30,000 estimate is what my measured usage would cost on per-token billing; it is not a saving anyone else should expect. Subscription limits used to be far more generous, and they keep changing, so the budget is reviewed rather than fixed
 
-ChatGPT and the OpenAI API also have separate billing. Paying for a ChatGPT subscription does not automatically settle API charges, as [OpenAI explains](https://help.openai.com/en/articles/8156019). Check the workload and product terms before assuming the two routes are interchangeable
+## The four lines
 
-## The server is one part of the budget
+| Line | What it covers | Often forgotten |
+|---|---|---|
+| Models | Subscription, pay-per-use or own hardware | Limits and how fast they burn |
+| Server | Always-on hosting | Needed as soon as the system runs around the clock |
+| Services | Speech recognition, images, mailings | Each one billed separately |
+| Support | Failure checks, model updates, changes for new tasks | Usually missing entirely |
 
-My system runs with a remote server, so the server charge belongs alongside the model subscriptions. Another setup may also need external services. Those costs depend on what the system connects to and how frequently it uses each component
+Support is the line that keeps the other three useful. Data drifts, models are updated, the business adds services, and someone has to notice and adjust. Budget it as hours per month times a rate, so it can be compared with the rest and does not disappear into "we will deal with it later"
 
-![Computers](https://images.pexels.com/photos/6804612/pexels-photo-6804612.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+## Choosing how to pay for models
 
-Maintenance is work too. Someone has to investigate failures, apply updates and adjust the system when requirements change. I describe the scope of [AI system support and development](https://matintellect.com/en/services/ai-support) on my site
+| Workload | Usually better |
+|---|---|
+| Daily, steady, many tasks | Subscription, within its limits |
+| Light or bursty | Pay per use |
+| Data must never leave | Own hardware, if the model and volume justify it |
+| Unsure | One month on a subscription, then decide from observed use |
 
-There is another option: running a model on your own hardware. It changes where the computing happens, but larger models still need enough memory, storage and processing power. An ordinary laptop may not be sufficient for some of them
+![Server equipment](https://images.pexels.com/photos/17489151/pexels-photo-17489151.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-The practical comparison is therefore your own workload, its limits, the infrastructure it needs and the support required after launch. My numbers describe my setup, not a fixed monthly price for every AI system
+## Estimating load
 
-Usage limits used to be much higher. Then again, the grass used to be greener too
+| Factor | Effect on volume |
+|---|---|
+| Requests per day | Linear |
+| Conversation length | Strong; long threads multiply text |
+| Tool use | Strong; tool calls add text both ways |
+| Always on or on demand | Determines whether scheduled work adds volume |
+
+## Plan versus actual
+
+| Line | Planned | Actual | Note |
+|---|---|---|---|
+| Models | | | |
+| Server | | | |
+| Services | | | |
+| Support | | | |
+| One-off | | | Keep separate from regular costs |
+
+Review monthly for the first months, then whenever the provider changes limits or prices, an agent or task is added, or the model changes
+
+## Comparing with value
+
+Total of the four lines versus hours freed per month times their cost. If the second is clearly larger, the system pays for itself; if not, revisit the system or the task
+
+## Savings by design
+
+- do work once: the subtitle assistant transcribes each video only once, so reprocessing costs nothing
+- keep local what can be local: long calls are transcribed on my own computer
+- route simple tasks to fast models and keep expensive ones for work that needs depth
+- watch limits and move work between models when they change
+
+![Workstations with computers](https://images.pexels.com/photos/6804612/pexels-photo-6804612.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Common mistakes
+
+- budgeting the subscription only
+- comparing subscription and API bills by price instead of workload
+- using the strongest model for every task
+- no comparison with freed hours
+
+More on what ongoing support includes is on the [AI support service page](https://matintellect.com/en/services/ai-support) of my site
