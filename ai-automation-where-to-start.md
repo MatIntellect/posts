@@ -1,33 +1,108 @@
-# AI automation: where to start
+# AI automation: a worksheet for choosing and specifying the first task
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-automation-where-to-start-1791966730.jpg)
+Type: worksheet and specification template. Reader: a founder, operations lead or developer about to start AI automation in a small business. Goal: pick a first task that can be verified, describe it precisely enough to build, and decide whether existing agents need an audit first. Limits: this is a planning template in prose; it ships no code or configuration, and the example entries are teaching material, not a tested specification
 
-My recommendation for beginning AI automation is to inventory an ordinary working day. Write down the tasks you perform, then look at their inputs and outputs. Simple, clearly defined data at both ends makes a process a better starting candidate
+![AI-generated illustration of AI automation and where to start](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-automation-where-to-start-1791966730.jpg)
 
-Hand over the easiest repetitive work first, choosing work that consumes the most time. The aim is to free resources for harder tasks. Small steps bring AI into a business or everyday life without trying to create a very complicated system that will most likely not work
+## Reference setup
 
-## An inbox has a defined source
+The worksheet follows the structure of my own automation. Verified facts, as published on my project page:
 
-Email review is one example I recommend considering. The material comes from received messages in a mailbox. A possible result is a list of messages needing attention. The incoming messages and that list give you something concrete to compare
+- a morning message with the plan for the day, assembled from calendar, tasks and reminders, has arrived for 127 days in a row
+- reminders are checked every 5 minutes; the system has sent 240 reminders
+- a 57-minute call recording becomes a transcript in about 10 minutes, with summary, tasks and a CRM client card in the same pass
+- about 40 calls with 15 clients have gone through the system
+- building a setup like this takes about 2–3 weeks
 
-![Email and daily planning](https://images.pexels.com/photos/14465804/pexels-photo-14465804.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+The simple pieces came first and the call processing was added on top of them
 
-Another candidate is keeping calls and meetings in a calendar. Information about a scheduled event is the input; an entry in the calendar is the output. Its date and time can be compared with the original meeting information. You know where the result belongs
+## Principle
 
-## A daily list is a separate process
+Start with the task that takes the most time among those with a clear input, a clear output and a result that can be checked at a glance. Exciting tasks with fuzzy results come later
 
-Preparing the day's task list begins with the tasks for that day. Its result is the collected list. Gathering those tasks in one place is a small assignment of its own, rather than an instruction to organize an entire business
+## Step 1. Time log
 
-Reviewing incoming enquiries has a similarly identifiable starting point: the enquiries themselves. A possible output is a list of reviewed enquiries. Both incoming items and output entries can be counted and compared
+Record one working week to the nearest hour. Log small tasks too; they add up
 
-![Task organization](https://images.pexels.com/photos/7439136/pexels-photo-7439136.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+## Step 2. Filters
 
-I suggest these examples because they have a clear source and easily countable data. The mailbox supplies messages, the meeting information supplies calendar entries, and existing tasks supply the daily list. None requires inventing a new source for the work
+A task qualifies only if all three hold:
 
-## Choose from your own day
+| Filter | Question | Fails when |
+|---|---|---|
+| Explainable | Could a new employee learn it in five minutes? | The explanation ends with "it depends" |
+| Checkable | Can one result be verified at a glance? | Checking takes as long as doing |
+| Defined | Are input and output both clear? | Data comes from unknown places or the output is vague |
 
-The first candidate depends on where your time goes. If reviewing email occupies a large part of routine work, consider that process. If collecting daily tasks takes longer, that list is another candidate. Start with the simplest repetitive process taking the most time
+Among qualifying tasks, choose the one with the most minutes per week
 
-I described the approach on my blog: [AI automation: where to start](https://matintellect.com/en/posts/ai-automation-where-to-start). It concerns the initial choice of work to hand over, not a claim that a complete automation has already been deployed
+## Step 3. Task specification
 
-There is no need to combine email, meetings, task planning and enquiries into a complicated system at the beginning. Each can be treated as a separate process. Releasing resources from simple routine work is what makes room for more complex tasks as you introduce AI gradually
+| Field | Content |
+|---|---|
+| Input | Every source the data comes from |
+| Output | What exactly is produced, with two or three criteria for "important" if relevant |
+| Check | How a person verifies one result in under a minute |
+| Frequency | How often the task runs |
+| Current cost | Minutes per week spent today |
+| Source health | Is the source in order now, or are items already being lost |
+
+## Example specifications (teaching material)
+
+| Task | Input | Output | Check |
+|---|---|---|---|
+| Email triage | Messages in the inbox | List of messages that need attention | Nothing important missing from the list |
+| Calls and meetings | What is planned and when | Calendar entry | Date and time match the agreement |
+| Daily task list | Tasks from all sources | One list | Every source item appears |
+| Incoming requests | The requests themselves | List of processed requests | Count of requests equals count of entries |
+
+The same template applies to harder tasks. For call processing in the reference setup: input is the recording; output is transcript, summary, tasks and client card; check is that the tasks match what was agreed on the call
+
+![Email on a laptop next to a paper planner](https://images.pexels.com/photos/14465804/pexels-photo-14465804.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Step 4. Validate on real data
+
+Run the automation on real messages, requests and meetings, compare with what you would have done by hand, and record each mismatch against a field of the specification
+
+| Mismatch | Likely field | Fix |
+|---|---|---|
+| Items missing | Input | List every source, not only the main one |
+| Wrong items flagged | Output | Add explicit criteria |
+| Items lost before automation sees them | Source health | Consolidate the source first |
+| Same error after two fixes | Filter | Task does not pass "explainable"; defer it |
+
+## When agents already exist
+
+If there are half-finished agents that keep failing, the first step is an audit without changes:
+
+- what works and what is broken
+- where the keys are stored and who has access
+- what spends money and how much
+- which parts are worth finishing and which are simpler to rebuild
+
+No new task is added until this inventory exists
+
+## Common mistakes
+
+- choosing the most interesting task instead of the most expensive one
+- choosing by feeling without a time log
+- leaving the Check field empty
+- automating a source that already loses items
+- starting several tasks at once and finishing none
+
+## Real limits
+
+- first results look modest; the payoff comes when several simple pieces connect
+- the filter thresholds are judgement and should be written down, not assumed
+- a task that is cheap in time but error-prone may deserve attention first; the worksheet does not capture that on its own
+
+![Working through a task list on a laptop](https://images.pexels.com/photos/7439136/pexels-photo-7439136.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Exit criteria for the first task
+
+- the specification has all six fields filled in
+- validation on real data shows no repeated mismatch
+- weekly minutes, including checking, are clearly lower than the current cost
+- the owner has stopped thinking about the task day to day
+
+More on how this kind of review is run for a business is on the [AI audit service page](https://matintellect.com/en/services/ai-audit) of my site
