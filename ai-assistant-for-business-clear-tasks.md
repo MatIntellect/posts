@@ -1,43 +1,83 @@
-# AI assistant for business: inputs, rules and outputs
+# AI assistant for business: role card template and readiness checklist
 
-![Cover](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-assistant-for-business-clear-tasks-1791359987.jpg)
+Type: specification template with a filled teaching example. Reader: a developer or operations lead scoping a first AI assistant for a small business. Goal: describe one assistant role precisely enough that it can be built, tested and handed over: input, rules, output, bad-data handling, boundaries and acceptance. Limits: the example is invented for illustration; the template is a teaching aid, not a tested configuration for a specific framework
 
-This note describes a process-oriented design: separate persistent context, task procedures and connected services
+![AI-generated illustration of creating an AI assistant for business](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-assistant-for-business-clear-tasks-1791359987.jpg)
 
-To me, an AI assistant for business is an employee with a specific role. It has its own memory, skills and connected services, used consistently to complete a clearly defined daily task. The best fit is a role with clear inputs and outputs: handling documents, reviewing financial flows or working with business numbers. Open-ended invention leaves more room for errors. A process built around calculations, defined rules and specific follow-up actions is a better candidate for automation
+## Definition used here
 
-## How is this different from chatting with ChatGPT?
+An AI assistant for business is treated as an employee for one area. It has its own memory, skills and connected services and does one clearly defined job every day. Roles with clear input and checkable output (documents, numbers, payments, sorting incoming requests by rules) are preferred over roles where the right answer is a matter of taste
 
-ChatGPT can remember information and connect tools. Its built-in memory is stored in the OpenAI service, not on your server. A separate assistant can keep its memory, rules and schedule in infrastructure you control. Running on a server means its work does not depend on your laptop staying open or your phone remaining on. [ChatGPT also supports scheduled tasks](https://help.openai.com/en/articles/10291617-scheduled-tasks-in-chatgpt): the distinction is not a complete lack of autonomy, but where the system runs and who controls its data and processes
+Reference system: my own assistant Jes has been running on my server for 134 days, runs 10 scheduled jobs and hands tasks to 7 other bots; since July she has passed on 165 tasks. Deleting data, spending money, messaging clients and publishing always wait for an explicit yes. A first assistant for one clear role took one to two weeks in my projects
 
-If you explain the context again, supply every document and manually move the answer into a spreadsheet, much of the work still sits with you. A recurring role needs a defined data source, a procedure and a destination for its output
+## Role card template
 
-## Start with the process, not the model
+| Field | Question it answers |
+|---|---|
+| Role | What does the assistant do, in one sentence |
+| Trigger | When does it run: schedule, new file, new message |
+| Input | Where data comes from and in what form |
+| Reference data | What trusted source the input is compared with |
+| Rules | Steps applied to the input, in order |
+| Calculations | Which numbers are computed, and by code, not by the model |
+| Output | What is produced and where it goes |
+| Bad data | What happens when input is missing, unreadable or contradictory |
+| Boundaries | What it does alone; what always needs a person |
+| Acceptance | How a person decides the output is correct, and how often |
+| Owner | Who reviews results during the first weeks |
 
-Creating an assistant starts with describing the task. Take checking an incoming document: which fields are required, what should they be compared against, what counts as an error and who receives a discrepancy report? This illustrates a workflow, not a promise that any model can independently handle any document
+If a field cannot be filled in, the role is not ready to build
 
-![Close-up of a person analyzing financial documents using a calculator and pen.](https://images.pexels.com/photos/33175651/pexels-photo-33175651.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+## Filled example (teaching only)
 
-The input is a document plus validation rules. The output is a list of discrepancies or confirmation that the specified checks passed. If you cannot verify the output, the task is still too vague
+| Field | Value |
+|---|---|
+| Role | Check every incoming supplier invoice before payment |
+| Trigger | New invoice file in the shared inbox |
+| Input | Invoice file |
+| Reference data | Contract with the supplier: amount, bank account, payment terms |
+| Rules | Extract supplier, amount, due date, account; compare with contract |
+| Calculations | Amount difference computed by code with exact decimal arithmetic |
+| Output | One row per invoice in a spreadsheet: status, issues |
+| Bad data | Status "cannot check" with the reason and the file attached; never guess |
+| Boundaries | Never pays, never writes to the supplier |
+| Acceptance | Weekly: five random rows compared with the original invoices |
+| Owner | Finance lead |
 
-## Separate memory, skills and connected services
+![Working with documents and a calculator](https://images.pexels.com/photos/33175651/pexels-photo-33175651.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-Memory holds stable context: agreed rules and information needed for the role. Skills describe how a task is performed. Connected services provide access to working data and actions. These are distinct system components, not one sprawling instruction with everything mixed together
+## Architecture split
 
-For a financial workflow, identify the source figures, reporting period and calculation method. Calculations belong in a calculator or code and must be checked against the source data. Confident prose from a language model does not prove that a total is correct. The assistant can coordinate checks and explain the result, but a guess must never replace a verifiable calculation
+| Part | Holds | Changes when |
+|---|---|---|
+| Memory | Stable context: rules, decisions, facts the role needs | A rule is corrected or added |
+| Skills | How to perform the task step by step | The procedure changes |
+| Services | Access to data and actions: mail, spreadsheets, accounting | A tool is added or removed |
+| Calculator or code | All arithmetic and comparisons | A new check is introduced |
 
-## Define the limits of action
+Keeping these apart avoids one huge instruction where a change in one place silently breaks another
 
-Decide what happens after a conclusion. Preparing a report differs from changing a record or sending a message. Each action needs a clear boundary: what can happen independently and where the assistant must stop for confirmation
+## Readiness checklist
 
-![Hand holding pen, analyzing budget with charts and graph paper.](https://images.pexels.com/photos/7054415/pexels-photo-7054415.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+- [ ] Role card filled in, every field
+- [ ] Reference data identified and trusted
+- [ ] Arithmetic moved to code
+- [ ] Bad-data scenario written and tested on a broken example
+- [ ] Boundaries agreed with the owner
+- [ ] Test run on typical documents and on deliberately wrong ones
+- [ ] Acceptance owner named
+- [ ] Same kind of mistake has stopped repeating for at least a few weeks before widening the role
 
-Incomplete data, contradictory figures and unreadable documents need their own handling path. The correct outcome is to expose the problem, not invent missing information to produce a polished answer
+![Checking financial spreadsheets](https://images.pexels.com/photos/7054415/pexels-photo-7054415.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-## Test with actual input data
+## Failure modes
 
-Before running the workflow regularly, test ordinary documents and cases containing errors. Compare the output with the source, check the calculations and ensure the assistant stops wherever a person is required. Then consider expanding its responsibilities
+| Symptom | Cause | Response |
+|---|---|---|
+| Correct-looking total that is wrong | Model did arithmetic | Move calculation to code |
+| Invoices marked ok with missing fields | No bad-data scenario | Add cannot-check status |
+| Endless tuning arguments | Role depends on taste | Pick a role with checkable output |
+| Errors hard to trace | Several services connected at once | Connect one at a time |
+| Assistant drifts into other tasks | Role widened without a new card | Write a new card or a separate helper |
 
-The design goal is a specific role with clear inputs, verifiable outputs and actions governed by defined rules. Define the process before expanding the assistant's responsibilities
-
-Original: https://matintellect.com/en/posts/ai-assistant-for-business-clear-tasks
+More on assistants and AI employees is on the [AI employee page](https://matintellect.com/en/services/ai-employee)
