@@ -1,33 +1,85 @@
-# AI Agent Implementation: Where to Start
+# AI agent implementation: rollout stages and acceptance notes
 
-![Mat starts with one small task](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-agent-implementation-where-to-start-1793407087.jpg)
+Type: implementation note and planning worksheet. Reader: a developer, operations lead or technical founder about to introduce the first AI agent into a small business. Goal: a staged rollout where each stage has an entry condition, an exit condition and a clear owner. Limits: this is a process note, not a library; the worksheet and diary template are teaching material, not a tested configuration
 
-A first AI agent doesn't need to run your entire business. If your previous experience is limited to chatting with ChatGPT, even handing over one familiar task changes how you work. You and your team need time to adjust, and the system needs time to be checked and tuned
+![AI-generated illustration of starting with one agent task](https://dxggowrfyirnanabowhr.supabase.co/storage/v1/object/public/site-images/site-ai-agent-implementation-where-to-start-1793407087.jpg)
 
-Trying to automate every process at once is a common mistake. Before choosing tools or connecting services, work out what people actually do throughout the day
+## Why stages
 
-## Follow your own work for a day
+A first agent usually fails for organisational reasons, not technical ones. The task was too wide, nobody defined a correct result, or the team never learned to check the output. Splitting the rollout into stages forces each of those questions to be answered before the agent touches anything that matters
 
-Start when you wake up and keep a running record. Write down the actions, decisions and order in which things happen. Note where your time goes. The goal is to capture the work as it is, including the small steps you might normally overlook
+The reference for these notes is my own work with agents. My personal agent has been running for 134 days, runs 10 scheduled jobs and hands tasks to 7 other bots; four kinds of actions there always wait for an explicit yes: deleting data, spending money, messaging clients and publishing. A first agent for one clear task took one to two weeks in my projects, including memory, approval rules, a schedule and testing on real data
 
-For example, an incoming email can involve opening the message, identifying the client's request and drafting a reply. Those are separate actions. Seeing them on paper makes it easier to discuss what might be handed over
+## Rollout stages
+
+| Stage | Entry condition | What the agent does | Exit condition | Owner |
+|---|---|---|---|---|
+| 0. Diary | Owner agrees to record one normal workday | Nothing | Written list of actions with input and output for each | Owner |
+| 1. Pick | Diary exists | Nothing | One task chosen: repetitive, clear input, checkable output, low cost of error | Owner and implementer |
+| 2. Shadow | Task defined in writing | Runs on real inputs, output goes only to a reviewer | Reviewer agrees with the output on a set of real cases, including hard ones | Reviewer |
+| 3. Drafts | Shadow passed | Prepares drafts in the real tool; a human sends or applies them | A week with no correction of the same kind twice | Reviewer |
+| 4. Unattended | Drafts stage stable | Runs the safe part of the task alone; risky actions still gated | Decided by the owner, action by action | Owner |
+
+Stage 4 is not the goal for every task. Some tasks stay at drafts forever, and that is a valid outcome
+
+## Task definition
+
+Each task gets a short written definition before stage 2. Fields:
+
+- Input: where the data comes from (mailbox, chat, spreadsheet, calendar)
+- Output: format and destination
+- Correct result: how a human decides the output is right
+- Forbidden actions: what the agent must not do, for example reply to clients
+- Ambiguity rule: when the input is unclear, flag it and ask; never guess
+- Escalation: who receives the flag and how
 
 ![Writing down a workday](https://images.pexels.com/photos/3746963/pexels-photo-3746963.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
 
-Once you have the list, ask an AI tool to analyze it or give it to the person who will handle your automation. Look for recurring work and the information each action needs. Then pick a small starting point
+## Diary template (teaching example)
 
-## Define what enters and what comes out
+One line per action, in the order it happened. The example rows are invented for illustration
 
-An email summary is a useful illustration: the input is the original message; the output is a short account of what the client is asking for. A reviewer can put the two side by side and see whether anything important is missing
+| Time | Action | Input | Output | Minutes | Could be checked by someone else? |
+|---|---|---|---|---|---|
+| 09:10 | Read new emails | Mailbox | List of requests in my head | 15 | Yes, if written down |
+| 09:25 | Update client table | Emails | Two new rows | 10 | Yes |
+| 11:00 | Reply to a pricing question | Email, price list | Reply | 5 | Yes |
+| 14:30 | Decide on a discount | Client history | Decision | 2 | No, owner judgement |
 
-Compare that with asking an agent to "manage the inbox". You would still have to define which messages matter, what the agent is supposed to do with them and what a completed job looks like. Each additional responsibility adds another part to check
+Rows with a clear input, a written output and "yes" in the last column are candidates for stage 1. Rows that are judgement calls stay with people
 
-![Reviewing work documents](https://images.pexels.com/photos/9052597/pexels-photo-9052597.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+## Failure modes
 
-Agree on where the summary should appear and who will review it. If the source email doesn't contain enough information, the agent should say so instead of filling the gap. Sending a reply to the client is a separate action; it can stay with a person
+| Failure | Where it shows up | Response |
+|---|---|---|
+| Task too wide | Shadow never passes; every case is different | Split it; go back to stage 1 |
+| No definition of correct | Reviewers disagree with each other | Write the rule before testing the agent |
+| Agent guesses on missing data | Confident output referring to things not in the input | Add the ambiguity rule and a test case for it |
+| Same correction repeats | Drafts stage | The written rule is unclear; rewrite it so the agent reads it next time |
+| Team ignores drafts | Drafts pile up unchecked | Shrink the task or move the output into a tool the team already opens |
+| Silent stop | Nothing arrives and nobody notices | A service supervisor plus a daily line that the job ran |
 
-## Expand after the first task makes sense
+## Acceptance notes
 
-Run the workflow on a few real emails, including an incomplete request. Check whether the summaries preserve the important details and whether the result arrives somewhere useful. Keep human review in place while you resolve errors
+- Keep a small labelled set: ten real cases with two or three hard ones beat a hundred easy ones
+- Every correction becomes a new labelled case and, where it applies, a written rule the agent reads next time
+- Measure agreement with a human, not abstract accuracy; the human is the definition of correct for this task
 
-When that first step works and the people using it understand the routine, return to the day's list and choose another task. You can see how I build [turnkey AI agents](https://matintellect.com/en/services/ai-agents) around business workflows on my service page
+![Reviewing results at a desk](https://images.pexels.com/photos/9052597/pexels-photo-9052597.jpeg?auto=compress&cs=tinysrgb&h=650&w=940)
+
+## Planning worksheet
+
+Fill in before stage 2. It is a template, not a tested configuration
+
+- First task (one sentence):
+- Input source and access method:
+- Output format and destination:
+- Who decides the output is correct:
+- Ten real cases collected: yes / no
+- Forbidden actions:
+- Actions that always need approval:
+- Who gets flags when input is unclear:
+- How we learn that the agent stopped:
+- Date to review whether to move to the next stage:
+
+Scoping, rollout and support for agents like this is described on the [AI agent development page](https://matintellect.com/en/services/ai-agents)
